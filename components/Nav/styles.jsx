@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const NavWrap = styled.ul`
 position: absolute;
-right: -2.6rem;
+right: -1.8rem;
 top: 1.3rem;
     display: flex;
     flex-direction: column;

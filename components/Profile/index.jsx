@@ -1,11 +1,11 @@
 import React from "react";
-import { DashLine, Feeling, Infobox, ProfileWrap } from "./styles";
+import { Line, Feeling, Infobox, ProfileWrap } from "./styles";
 
 const Profile = () => {
   return (
     <ProfileWrap>
       <img src="/images/cyworldProfile 1.svg" alt="프로필 사진" />
-      <DashLine />
+      <Line />
       <Infobox>
         <li>
           <img src="/images/icon_name.svg" alt="아이콘" />

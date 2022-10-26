@@ -34,7 +34,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'S-CoreDream';
         font-weight: 200;
     }
-    body{
+    body,html{
         font-size: 10px;
         margin: 0 auto;
     }

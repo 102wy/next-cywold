@@ -15,12 +15,13 @@ export const ProfileWrap = styled.section`
     max-height: 12.3rem;
   }
 `;
-export const DashLine = styled.span`
+export const Line = styled.span`
   width: 14.8rem;
   height: .1rem;
   background-color: ${props => props.theme.gray_02};
-  margin: 1.4rem 0 .7rem 0;
+  margin: ${props => props.margin || '1.4rem 0 .7rem 0'};
   display: block;
+  width: 100%;
 `
 export const Infobox = styled.ul`
   display: flex;
