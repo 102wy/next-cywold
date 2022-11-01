@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Line } from '../components/Profile/styles';
 import SubTitle from '../components/SubTitle';
+import { useQuery, gql } from "@apollo/client";
+import { useRouter } from 'next/router';
 
 const Home = () => {
   const bgm = [
@@ -65,6 +67,20 @@ const Home = () => {
       url: 'https://youtu.be/_MythyZ0w3s'
     }
   ]
+
+  const GET_DIARY = gql`
+    query {
+      fetchBoards {
+        number,
+        title,
+      }
+    }
+  `
+  const { data, loading } = useQuery(GET_DIARY);
+  const router = useRouter();
+  if (loading) {
+    return <h1>로딩중!</h1>
+  }
   return (
     <Wrap>
       <Top>
@@ -72,8 +88,7 @@ const Home = () => {
           <SubTitle title='Updated News' />
           <Line margin='0 0 .715rem 0' />
           <NewsList>
-            <li>제목1</li>
-            <li>제목2</li>
+            {data?.fetchBoards.slice(0, 4).map((item) => <li key={item.number} onClick={() => router.push(`/diary/${item.number}`)}>{item.title}</li>)}
           </NewsList>
         </div>
         <SubNav>
@@ -98,7 +113,7 @@ const Home = () => {
             <p>아티스트</p>
           </li>
           {bgm.map(item => (
-            <li onClick={() => window.open(`${item.url}`)}>
+            <li key={item.id} onClick={() => window.open(`${item.url}`)}>
               <input type="checkbox" />
               <p className='number'>{item.id}</p>
               <p>{item.name}</p>
@@ -166,6 +181,9 @@ const SubNav = styled.ul`
     &:first-child{
       border-top: .1rem solid ${props => props.theme.gray_02};
       border-style: dashed;
+    }
+    &:nth-child(2) span:first-child {
+      padding-right: 4.1rem;
     }
     span{
       font-family: 'Gill-Sans';
@@ -237,9 +255,10 @@ const MusicList = styled.ul`
           margin: .4rem 2.4rem .4rem 2rem;
           width: 1.2rem;
           height: 1.2rem;
-          
+        }
       }
+    &:last-child .number{
+      margin-right: 2.1rem;
     }
-    
   }
 `

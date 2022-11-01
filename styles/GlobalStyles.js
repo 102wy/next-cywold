@@ -26,6 +26,10 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
     }
+    @font-face {
+        font-family: 'Inter';
+        src: url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+    }
     *{
         margin: 0;
         padding: 0;
@@ -46,7 +50,9 @@ const GlobalStyle = createGlobalStyle`
     p,span,h1,h2,h3,h4,h5 {
         cursor: default;
     }
-    
+    button{
+        cursor: pointer;
+    }
 `;
 
 export default GlobalStyle;
