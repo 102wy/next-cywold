@@ -4,12 +4,12 @@ import { Line, Feeling, Infobox, ProfileWrap } from "./styles";
 const Profile = () => {
   return (
     <ProfileWrap>
-      <img src="/images/cyworldProfile 1.svg" alt="프로필 사진" />
+      <img src="/images/profile.jpg" alt="프로필 사진" />
       <Line />
       <Infobox>
         <li>
           <img src="/images/icon_name.svg" alt="아이콘" />
-          <p>이름</p>
+          <p>먼지</p>
         </li>
         <li>
           <img src="/images/icon_call.svg" alt="아이콘" />
@@ -19,7 +19,7 @@ const Profile = () => {
           <img src="/images/icon_mail.svg" alt="아이콘" />
           <p>E-mail</p>
         </li>
-        <li>
+        <li onClick={() => window.open('https://www.instagram.com/dust_pepper')}>
           <img src="/images/icon_star.svg" alt="아이콘" />
           <p>인스타그램</p>
         </li>

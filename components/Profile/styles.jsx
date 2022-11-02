@@ -39,6 +39,10 @@ export const Infobox = styled.ul`
     p{
       font-size: .9rem;
       line-height: 1.075rem;
+      cursor: pointer;
+      &:hover{
+        text-decoration: underline;
+      }
     }
   }
 `
