@@ -2,20 +2,13 @@ import Link from 'next/link';
 import { Line } from '../../components/Profile/styles';
 import SubTitle from '../../components/SubTitle';
 import { DiaryWrap, Top, DiaryList } from './styles';
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { GET_DIARYS } from '../../shares/Query';
 
 const Diary = () => {
-    const GET_DIARY_LIST = gql`
-        query {
-            fetchBoards{
-                number,
-                title,
-                contents,
-                createdAt
-            }
-        }
-    `
-    const { data, loading } = useQuery(GET_DIARY_LIST);
+    const { data, loading, refetch } = useQuery(GET_DIARYS, {
+        onCompleted: () => refetch()
+    });
     if (loading) {
         return <h1>로딩중...</h1>
     }

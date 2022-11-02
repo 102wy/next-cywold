@@ -4,32 +4,26 @@ import SubTitle from '../../components/SubTitle';
 import { DiaryWrap } from '../diary/styles';
 import { useQuery, gql, useMutation } from "@apollo/client";
 import { DiaryForm } from './styles';
+import { CREATE_DIARY } from '../../shares/Mutation';
+import { useRouter } from 'next/router';
 
 const Write = () => {
+    const router = useRouter();
     const [isEdit, setEdit] = useState(false);
     const titleRef = useRef();
     const contentRef = useRef();
-    const CREATE_DIARY = gql`
-        mutation CreateBoard{
-            createBoard{
-                title,
-                contents,
-            }
-        }
-    `
     const [createDiary] = useMutation(CREATE_DIARY, {
-        variables: {
-            title: titleRef.current,
-            contents: contentRef.current
-        },
-        onCompleted: () => alert('등록완료!')
+        onCompleted: () => {
+            alert('작성완료!')
+            router.push('/diary')
+        }
     })
 
-    // const onSubmit = () => {
-    //     const title = titleRef.current.value;
-    //     const contents = contentRef.current.value;
-    //     createDiary({ variables: { title, contents } })
-    // }
+    const onSubmit = () => {
+        const Title = titleRef.current.value;
+        const Content = contentRef.current.value;
+        createDiary({ variables: { title: Title, contents: Content, writer: '102' } })
+    }
     return (
         <DiaryWrap>
             <SubTitle title={`Diary | ${isEdit ? '글 수정' : '글 등록'}`} />
@@ -41,7 +35,7 @@ const Write = () => {
                 </div>
             </DiaryForm>
             <div className='button-wrap'>
-                <button onClick={createDiary}>{`${isEdit ? '수정하기' : '작성하기'}`}</button>
+                <button onClick={onSubmit}>{`${isEdit ? '수정하기' : '작성하기'}`}</button>
                 <button>{`${isEdit ? '삭제하기' : '뒤로가기'}`}</button>
             </div>
         </DiaryWrap>

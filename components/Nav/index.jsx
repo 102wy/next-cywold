@@ -19,7 +19,7 @@ const Nav = () => {
       </li>
       <li>
         <Link href="/diary">
-          <NavAlink tab={router.pathname === "/diary"}>다이어리</NavAlink>
+          <NavAlink tab={router.pathname.includes("/diary")}>다이어리</NavAlink>
         </Link>
       </li>
     </NavWrap>

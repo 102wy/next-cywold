@@ -4,32 +4,16 @@ import { DiaryDate, DiaryDetail, DiaryWrap } from '../styles';
 import SubTitle from '../../../components/SubTitle';
 import { Line } from '../../../components/Profile/styles';
 import Link from 'next/link';
+import { GET_DIARY } from '../../../shares/Query';
+import { DELETE_DIARY } from '../../../shares/Mutation';
 
 const Detail = () => {
     const router = useRouter();
-    const GET_DIARY = gql`
-        query {
-            fetchBoard(number:${router.query.numbers}){
-                number,
-                title,
-                contents,
-                createdAt
-            }
+    const { data, loading, refetch } = useQuery(GET_DIARY, {
+        variables: {
+            number: Number(router.query.numbers)
         }
-    `
-    const DELETE_DIARY = gql`
-        mutation {
-            deleteBoard(number:${router.query.numbers}){
-                number,
-            }
-        }
-    `
-    const { data, loading } = useQuery(GET_DIARY);
-    const execDeleteDiary = () => {
-        if (window.confirm('정말로 삭제하시겠습니까?')) {
-            deleteDiary()
-        }
-    }
+    });
     const [deleteDiary] = useMutation(
         DELETE_DIARY, {
         onCompleted: () => {
@@ -38,7 +22,17 @@ const Detail = () => {
         }
     }
     );
+    const onDeleteDiary = () => {
+        if (window.confirm('정말로 삭제하시겠습니까?')) {
+            deleteDiary({
+                variables: {
+                    number: Number(router.query.numbers)
+                },
+            })
+        }
+    }
     if (loading) return <h1>로딩중...</h1>
+    console.log(data)
     return (
         <DiaryWrap>
             <SubTitle title='Diary' />
@@ -50,7 +44,7 @@ const Detail = () => {
             </DiaryDetail>
             <div className='button-wrap'>
                 <button onClick={() => router.push(`/diary/${data.fetchBoard.number}/edit`)}>수정하기</button>
-                <button onClick={execDeleteDiary}>삭제하기</button>
+                <button onClick={onDeleteDiary}>삭제하기</button>
             </div>
             <Link href='/diary'>
                 <a className='togo'>&#60; 다이어리 리스트 바로가기</a>
