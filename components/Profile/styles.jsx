@@ -8,7 +8,7 @@ export const ProfileWrap = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: ${(props) => props.padding || "2.8rem 3.3rem 2.4rem 3.3rem"};
+  padding: ${(props) => props.padding || "2.8rem 3.3rem 2rem 3.3rem"};
   min-width: ${props => props.minWidth || '20.8rem'};
   img{
     max-width: 14.2rem;

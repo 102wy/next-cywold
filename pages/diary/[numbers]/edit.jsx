@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import SubTitle from '../../../components/SubTitle';
-import { DiaryWrap } from '../../diary/styles';
 import { Line } from '../../../components/Profile/styles';
 import { useQuery, useMutation } from "@apollo/client";
 import { useRouter } from 'next/router';
-import { DiaryForm } from '../../write/styles';
+import { DiaryForm } from '../../write';
 import { GET_DIARY } from '../../../shares/Query';
 import { UPDATE_DIARY } from '../../../shares/Mutation';
+import { DiaryWrap } from '..';
 
 const Edit = () => {
     const router = useRouter();

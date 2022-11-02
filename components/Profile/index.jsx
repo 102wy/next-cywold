@@ -1,26 +1,27 @@
+import Image from 'next/image';
 import React from "react";
 import { Line, Feeling, Infobox, ProfileWrap } from "./styles";
 
 const Profile = () => {
   return (
     <ProfileWrap>
-      <img src="/images/profile.jpg" alt="프로필 사진" />
+      <Image src="/images/profile.jpg" alt="프로필 사진" width={146} height={133} />
       <Line />
       <Infobox>
         <li>
-          <img src="/images/icon_name.svg" alt="아이콘" />
+          <Image src="/images/icon_name.svg" alt="아이콘" width={12} height={13} />
           <p>먼지</p>
         </li>
         <li>
-          <img src="/images/icon_call.svg" alt="아이콘" />
+          <Image src="/images/icon_call.svg" alt="아이콘" width={12} height={13} />
           <p>Phone</p>
         </li>
         <li>
-          <img src="/images/icon_mail.svg" alt="아이콘" />
+          <Image src="/images/icon_mail.svg" alt="아이콘" width={12} height={13} />
           <p>E-mail</p>
         </li>
         <li onClick={() => window.open('https://www.instagram.com/dust_pepper')}>
-          <img src="/images/icon_star.svg" alt="아이콘" />
+          <Image src="/images/icon_star.svg" alt="아이콘" width={12} height={13} />
           <p>인스타그램</p>
         </li>
       </Infobox>

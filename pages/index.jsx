@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Line } from '../components/Profile/styles';
 import SubTitle from '../components/SubTitle';
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { useRouter } from 'next/router';
 import { BGM, GET_DIARYS } from '../shares/Query';
 
